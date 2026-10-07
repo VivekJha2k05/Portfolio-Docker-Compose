@@ -3,19 +3,19 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git url: 'https://github.com/VivekJha2k05/Portfolio-Docker-Compose',branch: 'main' 
+        git branch: 'main',
+            url: 'https://github.com/VivekJha2k05/Portfolio-Docker-Compose.git'
       }
     }
     stage('Build') {
       steps {
-        sh 'docker-compose build'
+        sh 'docker compose build'
       }
     }
     stage('Deploy') {
       steps {
-        sh 'docker-compose up -d'
+        sh 'docker compose up -d'
       }
     }
   }
 }
-
