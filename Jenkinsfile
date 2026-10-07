@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/VivekJha2k05/docker-compose-webapp.git'
+        git 'https://github.com/VivekJha2k05/Portfolio-Docker-Compose'
       }
     }
     stage('Build') {
