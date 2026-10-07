@@ -3,6 +3,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
+# Portfolio HTML template
 portfolio_html = """
 <!DOCTYPE html>
 <html>
@@ -116,6 +117,24 @@ def home():
         message = f"Error: {e}"
 
     return render_template_string(portfolio_html + f"<p>Message from MySQL: {message}</p>")
+
+@app.route('/check')
+def check():
+    try:
+        conn = mysql.connector.connect(
+            host="db",
+            user="root",
+            password="root",
+            database="devopsdb"
+        )
+        cursor = conn.cursor()
+        cursor.execute("SELECT 'Database connection successful'")
+        result = cursor.fetchone()
+        message = result[0]
+    except Exception as e:
+        message = f"Error: {e}"
+
+    return f"<h2>{message}</h2>"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
